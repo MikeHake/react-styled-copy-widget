@@ -3,6 +3,12 @@ import icon from './icon_copy.svg';
 import styled from 'styled-components';
 import {CopyToClipboard} from "react-copy-to-clipboard";
 
+
+const Content = styled.div`
+  position: relative; 
+  display: inline-block;
+`;
+
 const StyledButton = styled.button`
   border: none;
   width: 40px;
@@ -29,13 +35,29 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledStatus = styled.span`
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  font-size: 15px;
+  color: white;
+  background: #27ae60;
+  border-radius: 8px;
+  height: 20px;
+  width: 60px;
+  line-height: 20px;
+`;
+
 const CopyWidget = ({text}) => {
   return (
-    <CopyToClipboard text={text} onCopy={() => console.log('Copied:', text)}>
-      <StyledButton>
-        <img src={icon} alt="copy" className="icon"/>
-      </StyledButton> 
-    </CopyToClipboard>   
+    <Content>
+      <CopyToClipboard text={text} onCopy={() => console.log('Copied:', text)}>
+        <StyledButton>
+          <img src={icon} alt="copy" className="icon"/>
+        </StyledButton> 
+      </CopyToClipboard>  
+      <StyledStatus>Copied</StyledStatus>
+    </Content>
   );
 }
 
